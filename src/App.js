@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav'
-import Modal from 'react-bootstrap/Modal'
-import Card from 'react-bootstrap/Card'
-import Toggle from 'react-toggle'
-import SignatureCanvas from 'react-signature-canvas'
+import Nav from 'react-bootstrap/Nav';
+import Modal from 'react-bootstrap/Modal';
+import Card from 'react-bootstrap/Card';
+import Spinner from 'react-bootstrap/Spinner';
+import Toggle from 'react-toggle';
+import SignatureCanvas from 'react-signature-canvas';
 
 import axios from 'axios';
 
@@ -14,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-toggle/style.css" // for ES6 modules
 function App() {
   const [data, setData] = useState({});
+  const [isLoading, setLoading] = useState(true);
   const [show, setShow] = useState(false);
   const [selectedOption, setSelectedOption] = useState([]);
   const [windowWidht, setWindowWidth] = useState();
@@ -23,11 +25,13 @@ function App() {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
+    setLoading(true);
     axios.get('https://run.mocky.io/v3/4dcd8453-10ee-4d0b-a8ce-91de693495e1')
       .then(res => {
-        setData(res.data)
+        setData(res.data);
       })
       .catch(error => console.log(error))
+      .finally(() => setLoading(false))
 
     handleWindowWidth();
     window.addEventListener('resize', handleWindowWidth);
@@ -45,7 +49,6 @@ function App() {
     console.log('--------------------------------------')
   }
 
-  if (!data) return <p>Loading</p>
   return (
     <>
       <Container className="App">
@@ -60,7 +63,7 @@ function App() {
             <p>{data.header?.customerEmail}</p>
           </span>
         </Nav>
-
+        {isLoading && <Spinner animation="border" />}
         <p>{data.body?.title}</p>
         <p>{data.body?.abstract}</p>
         <Button className="show-more-button" onClick={handleShow}>Show More</Button>
