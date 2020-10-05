@@ -12,7 +12,7 @@ import axios from 'axios';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "react-toggle/style.css" // for ES6 modules
+import "react-toggle/style.css"
 function App() {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
