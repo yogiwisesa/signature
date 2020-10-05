@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+
 import Toggle from 'react-toggle';
 import Nav from 'react-bootstrap/Nav';
 import Card from 'react-bootstrap/Card';
@@ -118,7 +119,7 @@ function App() {
         </Modal>
 
       </Container>
-      <div className="footer">Hello, I'm the footer </div>
+      <div className="footer">Hello, I'm the footer 😄</div>
     </>
   );
 }
