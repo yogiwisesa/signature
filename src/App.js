@@ -1,28 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Modal from 'react-bootstrap/Modal';
-import Card from 'react-bootstrap/Card';
-import Spinner from 'react-bootstrap/Spinner';
-import Toggle from 'react-toggle';
-import SignatureCanvas from 'react-signature-canvas';
-
 import axios from 'axios';
+import Toggle from 'react-toggle';
+import Nav from 'react-bootstrap/Nav';
+import Card from 'react-bootstrap/Card';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
+import Container from 'react-bootstrap/Container';
+import SignatureCanvas from 'react-signature-canvas';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-toggle/style.css"
+
 function App() {
   const [data, setData] = useState({});
-  const [isLoading, setLoading] = useState(true);
   const [show, setShow] = useState(false);
-  const [selectedOption, setSelectedOption] = useState([]);
+  const [isLoading, setLoading] = useState(true);
   const [windowWidht, setWindowWidth] = useState();
+  const [selectedOption, setSelectedOption] = useState([]);
+
   let signRef = useRef();
 
-  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
 
   useEffect(() => {
     setLoading(true);
@@ -40,6 +41,7 @@ function App() {
   const handleWindowWidth = () => {
     setWindowWidth(document.getElementById('navbar').offsetWidth)
   }
+
   const handleSubmit = () => {
     alert('Check console to see the data that will be submited!')
     console.log('--------------------------------------')
